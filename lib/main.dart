@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
@@ -40,12 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search_sharp),
+            icon: Image.asset('assets/images/search_icon.png'),
             color: Colors.white,
-            iconSize: 32,
           )
         ],
-        titleTextStyle: const TextStyle(color: Colors.white),
+        title: Image.asset(
+          'assets/images/netflix_logo.png',
+          height: 36,
+        ),
       ),
       body: const Center(
         child: Column(
@@ -76,7 +79,7 @@ class HomeScreenHeader extends StatelessWidget {
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/demoBanner.webp'),
+            image: AssetImage('assets/images/demo_banner.webp'),
             fit: BoxFit.cover),
       ),
       child: Stack(children: [
@@ -87,7 +90,7 @@ class HomeScreenHeader extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(0.8),
+                  Colors.black.withOpacity(0.95),
                   Colors.transparent,
                   Colors.black.withOpacity(0.5),
                   Colors.black.withOpacity(1)
