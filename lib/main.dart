@@ -59,14 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 36,
         ),
       ),
-      body: const Center(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             HomeScreenHeader(),
-            Expanded(
-              child: MovieImage(),
-            ),
+            MovieImage(),
           ],
         ),
       ),
@@ -212,9 +210,9 @@ class MovieImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(children: const [
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(children: [
         SizedBox(height: 32),
         MovieImageCell(
           title: 'My List',
