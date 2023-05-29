@@ -37,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
@@ -56,9 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             HomeScreenHeader(),
             Expanded(
-              child: Center(
-                child: Text('Hehe'),
-              ),
+              child: MovieImage(),
             ),
           ],
         ),
@@ -181,6 +180,85 @@ class IconButtonWithTextBelow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [IconButton(onPressed: onPress, icon: icon), Text(title)],
+    );
+  }
+}
+
+class MovieImage extends StatelessWidget {
+  const MovieImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView(children: const [
+        SizedBox(height: 32),
+        MovieImageCell(
+          title: 'My List',
+        ),
+        MovieImageCell(
+          title: 'New Releases',
+        ),
+        MovieImageCell(
+          title: 'Popular',
+        ),
+      ]),
+    );
+  }
+}
+
+class MovieImageCell extends StatelessWidget {
+  const MovieImageCell({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            style: const TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w800,
+                fontSize: 16),
+          ),
+        ),
+        const SizedBox(height: 8),
+        SizedBox(
+          height: 168,
+          child: ListView.builder(
+              padding: const EdgeInsets.only(right: 8),
+              scrollDirection: Axis.horizontal,
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Wrap(children: [
+                  InkWell(
+                    onTap: () {
+                      print('Image in ${title} tapped!');
+                    },
+                    splashColor: Colors.white10,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        'assets/images/demo_banner.webp',
+                        height: 160,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ]);
+              }),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 }
